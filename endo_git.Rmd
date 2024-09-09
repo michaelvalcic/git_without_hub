@@ -71,6 +71,11 @@ git init
 4. Clone your remote repo
 ```
 git clone your_remote_repo_path
+
+```
+5. Sync your local to your remote
+```
+git remote add origin your_remote_repo_path
 ```
 5. (Bonus) Verify the remote repo is set and pointing to the correct place
 ```
