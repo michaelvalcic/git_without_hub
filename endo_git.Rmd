@@ -1,0 +1,164 @@
+# Using Git Without Github
+
+## Purpose
+
+This document can serve was a quick crash course on how I go about setting up Git with a remote repository on a notwork drive and not on Github.
+
+## Prerequisits 
+
+- Install [Git](https://git-scm.com/)
+- Make sure you've set up at least some global configurations for your name and email. Here's the commands, which you can run in Git Bash:
+  - `git config --global user.name 'YOUR NAME HERE'`
+  - `git config --global user.email 'YOUR EMAIL ADDRESS HERE'`
+- If you're setting this up on a shared drive, make sure you're on VPN or on the State Network
+
+### Setting Up Your "Local" Remote Branch
+
+Follow along with these commands with Git Bash:
+
+1. Decide where you want your remote repo to be and make your directory:
+Either by creating the directory from an absolute path:
+  ```
+mkdir enter_your_full_path_here
+  ```
+  
+Or from your parent directory:
+```
+cd your_parent_directory
+mkdir your_subdirectory_name
+
+```
+Note, if there's white space in your paths, wrap them in quotes, like this `cd 'OneDrive - State of New Hampshire'`
+
+2. Change into your newly created directory
+```
+cd your_subdirectory_name
+```
+
+3. Initialize an empty git repository
+```
+git init --bare
+```
+
+You're done with the remote repo!
+
+### Setting up your local working repo
+Follow along with these commands with Git Bash:
+
+1. Decide where you want your local repo to be and make your directory:
+Either by creating the directory from an absolute path:
+  ```
+mkdir enter_your_full_path_here
+  ```
+  
+Or from your parent directory:
+```
+cd your_parent_directory
+mkdir your_local_subdirectory_name
+
+```
+Note again, if there's white space in your paths, wrap them in quotes, like this `cd 'OneDrive - State of New Hampshire'`
+
+2. Change into your newly created directory
+```
+cd your_local_subdirectory_name
+```
+
+3. Initialize a git repository
+```
+git init
+```
+4. Clone your remote repo
+```
+git clone your_remote_repo_path
+```
+5. Add your remote repository to your local repository
+```
+git remote add origin your_remote_repo_path
+```
+6. (Bonus) Verify the remote repo is set and pointing to the correct place
+```
+git remote -v
+```
+7. (Bonus) Retrieve any changes in the remote repository
+```
+git fetch
+```
+
+### Adding your R code
+
+1. Either copy over any existing project files into the subdirectory created in your local repo or, if starting from scratch, create a new R project using the subdirectory in your local repo.
+
+2. When you're set, stage your current changes
+This will stage everything:
+```
+git add .
+```
+This will stage only named files:
+```
+git add file1.R file2.R
+ 
+```
+
+3. Record your changes to your repo
+
+```
+git commit -m "Your commit message here"
+```
+4. Push your changes to your remote repo
+```
+git push
+```
+
+### Working with branches
+
+This command will list all your local branches
+
+ ```
+ git branch
+ ```
+This will list all remote branches that you've fetched
+ ```
+ git branch -r
+ ```
+Create a new branch locally with this command
+```
+git branch your_branch_name
+```
+Swap over to your newly created branch with this command
+```
+git checkout your_branch_name
+```
+Ready to push work on your newly created branch to your remote repository AND retain this new branch there?
+```
+git push -u origin your_branch_name
+
+```
+Want to merge your new branch into your original branch and push to remote?
+```
+git checkout original_branch_name
+git merge your_second_branch_name
+git push
+```
+
+Want to delete a branch locally after it's merged to whatever branch you're currently in?
+```
+git branch -d your_branch_name
+```
+
+Want to FORCE delete a branch locally, no matter if it's merged to whatever branch you're currently in or not?
+```
+git branch -D your_branch_name
+```
+
+
+Want to delete a branch on your remote?
+
+```
+git push origin --delete your_branch_name
+```
+
+Need to FORCE delete a branch on your remote?
+```
+git push origin --delete --force your_branch_name
+```
