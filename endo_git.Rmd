@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document can serve was a quick crash course on how I go about setting up Git with a remote repository on a notwork drive and not on Github.
+This document can serve as a quick crash course on how I go about setting up Git with a remote repository on a notwork drive and not on Github.
 
 ## Prerequisits 
 
@@ -72,15 +72,11 @@ git init
 ```
 git clone your_remote_repo_path
 ```
-5. Add your remote repository to your local repository
-```
-git remote add origin your_remote_repo_path
-```
-6. (Bonus) Verify the remote repo is set and pointing to the correct place
+5. (Bonus) Verify the remote repo is set and pointing to the correct place
 ```
 git remote -v
 ```
-7. (Bonus) Retrieve any changes in the remote repository
+6. (Bonus) Retrieve any changes in the remote repository
 ```
 git fetch
 ```
